@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TinyLink</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background: #f2f2f2; }
+        .card { background: white; padding: 20px; border-radius: 10px; width: 100%; max-width: 400px; margin: auto; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #aaa; }
+        button { width: 100%; padding: 10px; background: #1a73e8; color: white; border: none; border-radius: 5px; }
+        .link-box { background: #e9e9e9; padding: 10px; margin-top: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>TinyLink - URL Shortener</h2>
+    <input id="longUrl" placeholder="Enter long URL">
+    <button onclick="createLink()">Shorten</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function createLink() {
+        let url = document.getElementById('longUrl').value;
+        if (!url) return alert("Enter a URL");
+
+        let short = "tiny.ly/" + Math.random().toString(36).substring(2, 7);
+
+        localStorage.setItem(short, url);
+
+        document.getElementById('result').innerHTML = `
+            <div class='link-box'>
+                <b>Short URL:</b> ${short}<br>
+                <b>Original:</b> ${url}
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>
